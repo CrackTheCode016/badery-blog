@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  font-family: 'Ubuntu';
+  height: 100%;
+  margin: 0;
+  background: #212129;
+  background-image: radial-gradient(#3d3e51 1px, transparent 0);
+  background-size: 40px 40px;
+  background-position: -19px -19px;
+  color: beige;
+  animation: animatedBackground 20s linear infinite alternate;
+}
+
+@keyframes animatedBackground {
+  0% {
+    background-position: top left;
+  }
+  100% {
+    background-position: bottom right;
+  }
+}
+
+// pallette
+
+// #212129	(33,33,41)
+// #323949	(50,57,73)
+// #3d3e51	(61,62,81)
+// #40445a	(64,68,90)
+// #4c5265 (76,82,101)
+
+button {
+  color: beige;
+  background-color: #40445a;
+  border-radius: 8px;
+  padding: 8px 8px 10px 10px;
+  border: none;
+  font-weight: bold;
+  margin: 4px;
+}
+
+button:hover {
+  background-color: #3d3e51;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  padding-top: 5%;
+}
+
+nav img {
+  max-width: 80px;
+  border-radius: 50%;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+code {
+  margin: 0px 4px 0px 4px;
+  font-size: larger;
+}
+
+ .bar {
+  display: flex;
+  fill: beige;
+  width: 100%;
+  margin: 10px 10px 10px 0px;
+  height: 2px;
+  border-radius: 10px;
+  background-color: beige;
+}
+
+// BLOG
+
+.body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #3d3e51;
+  flex-grow: 1;
+  border-radius: 8px;
+  opacity: .75;
+}
+
+.full {
+  width: 90%;
+}
+
+.list-header {
+
+}
+
+.list, .list-header, .list-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+}
+
+.list-body button {
+  align-self: center;
+}
