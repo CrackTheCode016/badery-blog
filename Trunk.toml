@@ -1,0 +1,14 @@
+[[hooks]]
+stage = "pre_build"
+command = "sh"
+command_arguments = ["-c", "rustc $TRUNK_SOURCE_DIR/build/scrape.rs -o $TRUNK_SOURCE_DIR/build/scrape"]
+
+[[hooks]]
+stage = "build"
+command = "sh"
+command_arguments = ["-c", "$TRUNK_SOURCE_DIR/build/scrape"]
+
+[[hooks]]
+stage = "post_build"
+command = "sh"
+command_arguments = ["-c", "rm $TRUNK_SOURCE_DIR/build/scrape"]

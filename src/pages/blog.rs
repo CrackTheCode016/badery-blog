@@ -11,6 +11,8 @@ pub struct BlogProps {
 
 #[function_component(Blog)]
 pub fn blog_full() -> Html {
+    // todo: load from posts.json, and display that way. 
+    // upon build, have something that turns a vec of posts to the posts.json file.
     let posts: Vec<Post> = vec![
         Post::new("Test!", "test", "A simple test post"),
         Post::new("Another test...", "another_test", "INSANNNE MARKDOWN SKILLSZZZ ✅✅✅✅✅✅"),

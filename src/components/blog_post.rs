@@ -9,6 +9,8 @@ use web_sys::Response;
 /// The list of blogs as fetched from the posts directory
 const PATH_PREFIX: &str = "/posts";
 
+
+// todo; proper error handling, abstract into seperate method for handling async stuff?
 pub async fn run(path: &String) -> Option<String> {
     let window = web_sys::window().unwrap();
     let resp_value = JsFuture::from(window.fetch_with_str(path))
