@@ -34,16 +34,18 @@ fn post_to_list_item(post: &Post, navigator: Navigator) -> Html {
     });
 
     html! {
-    <>
+    <div class="list-item" {onclick}>
     <div class="list-header">
+    <p class="date">{"Tue Aug 22"}</p>
     <h1>{post.title.clone()}</h1>
+    <div class="info">
+</div>
     </div>
     <div class="list-body">
         <p>{post.peek.clone()}</p>
-        <button {onclick} class="full">{"Read"}</button>
         <div class="bar"></div>
     </div>
-    </>
+    </div>
     }
 }
 /// Creates a formatted list of blog posts from the metadata.json file.

@@ -53,7 +53,14 @@ pub fn post(props: &BlogPostProps) -> Html {
     let html = html::Html::from_html_unchecked(markdown::to_html_with_options(&md, &Options::gfm()).unwrap().into());
     html! {
         <div class="post">
-            {html}
+            <div class="info">
+                <p class="date">{"Tue Aug 22"}</p>
+                <p class="author">{"Bader Youssef"}</p>
+            </div>
+                <hr />
+                <h1>{"Title Here"}</h1>
+                <hr />
+                {html}
        </div>
     }
 }

@@ -12,7 +12,7 @@ body {
   background-size: 40px 40px;
   background-position: -19px -19px;
   color: beige;
-  animation: animatedBackground 20s linear infinite alternate;
+  animation: animatedBackground 40s linear infinite alternate;
 }
 
 @keyframes animatedBackground {
@@ -33,7 +33,7 @@ body {
 // #4c5265 (76,82,101)
 
 button {
-  color: beige;
+  color: rgb(245, 245, 220);
   background-color: #40445a;
   border-radius: 8px;
   padding: 8px 8px 10px 10px;
@@ -83,7 +83,7 @@ code {
   margin: 10px 10px 10px 0px;
   height: 2px;
   border-radius: 10px;
-  background-color: beige;
+  background-color: rgb(245, 245, 220)dc;
 }
 
 // BLOG
@@ -104,10 +104,6 @@ code {
   width: 90%;
 }
 
-.list-header {
-
-}
-
 .list, .list-header, .list-body {
   display: flex;
   flex-direction: column;
@@ -117,4 +113,57 @@ code {
 
 .list-body button {
   align-self: center;
+}
+
+.list-item {
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.list-item:hover {
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  0% { background-color: rgba(33, 33, 41,0.1); }
+  100% { background-color: rgba(33, 33, 41,1); }
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  padding: 5% 10% 10% 10%;
+  background-color: rgba(64,68,90,0.75);
+  box-shadow: 2px 10px 34px 5px rgba(64,68,90,0.44);
+  h1 {
+    font-size: 5.9vw;
+  }
+  h2 {
+    font-size: 3.0vh;
+  }
+  p {
+    font-size: 2vmin;
+  }
+}
+
+.post hr {
+  width: 100%;
+}
+
+.post img {
+  max-width: 35%;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  box-shadow: 2px 10px 10px 5px rgba(0,0,0,0.1);
+}
+
+.post .info, .date, .author {
+  font-style: italic;
+  color: rgba(245, 245, 220, 0.5);
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
 }

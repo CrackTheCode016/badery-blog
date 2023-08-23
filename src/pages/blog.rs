@@ -14,6 +14,7 @@ pub fn blog_full() -> Html {
     let posts: Vec<Post> = vec![
         Post::new("Test!", "test", "A simple test post"),
         Post::new("Another test...", "another_test", "INSANNNE MARKDOWN SKILLSZZZ ✅✅✅✅✅✅"),
+        Post::new("Real article", "real", "A realistic article."),
     ];
     html! {
     <div class="body">
