@@ -1,11 +1,10 @@
 use std::fs::File;
+use std::io::Error;
 use std::io::{Read, Write};
-use std::io::{Error, ErrorKind};
 
-/// Responsible for parsing posts and providing a metadata file for easy access.
-use std::path::PathBuf;
 use serde::{Deserialize, Serialize};
 use serde_json::Result as SerdeResult;
+use std::path::PathBuf;
 
 #[derive(Debug, Deserialize, Serialize)]
 struct Post {
@@ -17,24 +16,27 @@ struct Post {
     pub md_name: String,
 }
 
-
 /// Step 1: Get all post paths.
 fn get_and_parse_paths() -> Result<Vec<Post>, Error> {
     let paths = std::fs::read_dir("./posts")?
         .into_iter()
         .map(|x| x.expect("bad path").path())
-        .map(|path| create_metadata(path).unwrap())
+        .filter(|path| path.display().to_string().contains(".md"))
+        .filter_map(|path| create_metadata(path).ok())
         .collect::<Vec<Post>>();
 
     Ok(paths)
 }
 
-fn parse_yaml_key(str: &str, key: &str) -> String {
+fn parse_yaml_key(str: &str, key: &str) -> Option<String> {
     let line = str
         .lines()
         .filter(|line| line.starts_with(key))
         .collect::<String>();
-    String::from(line.split(key).last().unwrap().trim())
+    if line.is_empty() {
+        return None;
+    }
+    Some(String::from(line.split(key).last().unwrap().trim()))
 }
 
 /// Step 2: Parse YAML as Post
@@ -50,11 +52,11 @@ fn create_metadata(path: PathBuf) -> Result<Post, Error> {
         }
     }
     Ok(Post {
-        title: parse_yaml_key(&header, "title:"),
-        author: parse_yaml_key(&header, "author:"),
-        date: parse_yaml_key(&header, "date:"),
-        peek: parse_yaml_key(&header, "desc:"),
-        id: parse_yaml_key(&header, "id:"),
+        title: parse_yaml_key(&header, "title:").unwrap_or_default(),
+        author: parse_yaml_key(&header, "author:").unwrap_or_default(),
+        date: parse_yaml_key(&header, "date:").unwrap_or_default(),
+        peek: parse_yaml_key(&header, "desc:").unwrap_or_default(),
+        id: parse_yaml_key(&header, "id:").unwrap_or_default(),
         md_name: path.display().to_string(),
     })
 }
@@ -69,6 +71,6 @@ fn save(posts: Vec<Post>) -> SerdeResult<()> {
 
 fn main() -> Result<(), Error> {
     let posts = get_and_parse_paths()?;
-    save(posts).unwrap();
+    save(posts)?;
     Ok(())
 }
