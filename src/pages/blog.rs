@@ -1,10 +1,6 @@
-use wasm_bindgen_futures::spawn_local;
-use web_sys::console;
 /// The actual page which displays the blog content
 use yew::prelude::*;
-use yew::suspense::SuspensionResult;
 use crate::components::blog_list::{Post, BlogList};
-use crate::services::handler::FileHandler;
 use crate::services::hooks::use_file;
 
 #[derive(Properties, PartialEq)]

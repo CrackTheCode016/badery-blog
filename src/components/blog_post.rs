@@ -1,6 +1,5 @@
 use markdown::Options;
 use web_sys::console;
-use yew::suspense::SuspensionResult;
 use yew::prelude::*;
 
 use super::blog_list::Post;
@@ -21,19 +20,22 @@ fn use_test() {
 #[function_component(BlogPost)]
 pub fn post(props: &BlogPostProps) -> HtmlResult {
     let path = format!("/posts/{}.md", props.id.clone());
-    let id = "real";
     let metadata = use_file("/posts/metadata.json".to_string())?;
     let md: String = use_file(path.clone())?;
     if metadata != "not found" {
         let metadata: Vec<Post> = serde_json::from_str(&metadata).expect("Invalid metadata");
         let post: &Post = metadata
             .iter()
-            .find(|p| p.id == id)
+            .find(|p| p.id == props.id)
             .expect("post not found");
         let post = post.clone();
+        console::log_1(&post.title.clone().into());
         let html = html::Html::from_html_unchecked(
             markdown::to_html_with_options(&md, &Options::gfm())
                 .expect("Unable to parse markdown")
+                .lines()
+                .skip(6)
+                .collect::<String>()
                 .into(),
         );
 

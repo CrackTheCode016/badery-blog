@@ -1,6 +1,6 @@
 use wasm_bindgen::prelude::*;
 use wasm_bindgen_futures::JsFuture;
-use web_sys::{Response, console};
+use web_sys::Response;
 
 pub struct FileHandler;
 
