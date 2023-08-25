@@ -1,5 +1,5 @@
 [package]
-name = "badery-blog"
+name = "wasm_blog"
 version = "0.1.0"
 edition = "2021"
 description = "A Wasm-based blog that loads and displays md files with Yew."
@@ -17,3 +17,11 @@ wasm-bindgen-futures = "0.4.37"
 web-sys = "0.3.64"
 yew = { version="0.20", features=["csr"] }
 yew-router = "0.17"
+serde = {version = "1.0.185", features = ["derive"] }
+serde_json = { version = "1.0.105", default-features = false }
+
+[workspace]
+
+members = [
+    "scripts",
+]

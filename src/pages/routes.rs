@@ -6,8 +6,8 @@ pub enum Route {
     Home,
     #[at("/blog")]
     Blog,
-    #[at("/post/:path")]
-    Post {path: String},
+    #[at("/post/:id")]
+    Post {id: String},
     #[not_found]
     #[at("/404")]
     NotFound,

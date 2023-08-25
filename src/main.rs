@@ -1,5 +1,6 @@
 mod components;
 mod pages;
+mod services;
 
 use components::{blog_post::BlogPost, nav::Nav};
 use pages::{blog::Blog, home::Home, not_found::NotFound, routes::Route};
@@ -25,7 +26,7 @@ fn switch(routes: Route) -> Html {
     match routes {
         Route::Home => html! { <Home /> },
         Route::Blog => html! { <Blog /> },
-        Route::Post {path} => html! {  <BlogPost {path} />},
+        Route::Post {id} => html! {  <BlogPost {id} />},
         Route::NotFound => html! { <NotFound /> },
     }
 }

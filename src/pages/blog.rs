@@ -1,8 +1,11 @@
+use wasm_bindgen_futures::spawn_local;
+use web_sys::console;
 /// The actual page which displays the blog content
 use yew::prelude::*;
-
-use crate::components::blog_list::BlogList;
-use crate::components::blog_list::Post;
+use yew::suspense::SuspensionResult;
+use crate::components::blog_list::{Post, BlogList};
+use crate::services::handler::FileHandler;
+use crate::services::hooks::use_file;
 
 #[derive(Properties, PartialEq)]
 pub struct BlogProps {
@@ -11,17 +14,15 @@ pub struct BlogProps {
 
 #[function_component(Blog)]
 pub fn blog_full() -> Html {
-    // todo: load from posts.json, and display that way. 
-    // upon build, have something that turns a vec of posts to the posts.json file.
-    let posts: Vec<Post> = vec![
-        Post::new("Test!", "test", "A simple test post"),
-        Post::new("Another test...", "another_test", "INSANNNE MARKDOWN SKILLSZZZ ✅✅✅✅✅✅"),
-        Post::new("Real article", "real", "A realistic article."),
-    ];
+
+    let md = use_file("/posts/metadata.json".to_string()).unwrap();
+
     html! {
     <div class="body">
         <h1>{ "Blog" }</h1>
-        <BlogList posts={posts} />
+            if md != "not found" {
+            <BlogList posts={serde_json::from_str::<Vec<Post>>(&md.clone()).unwrap()} />
+            }
     </div>
     }
 }
