@@ -2,13 +2,3 @@
 stage = "pre_build"
 command = "sh"
 command_arguments = ["-c", "cargo run --manifest-path $TRUNK_SOURCE_DIR/scripts/Cargo.toml"]
-
-# [[hooks]]
-# stage = "build"
-# command = "sh"
-# command_arguments = ["-c", "$TRUNK_SOURCE_DIR/scripts/scrape"]
-
-# [[hooks]]
-# stage = "post_build"
-# command = "sh"
-# command_arguments = ["-c", "rm $TRUNK_SOURCE_DIR/scripts/scrape"]
