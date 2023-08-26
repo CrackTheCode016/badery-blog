@@ -4,17 +4,8 @@ use std::io::{Read, Write};
 
 use serde::{Deserialize, Serialize};
 use serde_json::Result as SerdeResult;
+use wasm_blog::services::types::Post;
 use std::path::PathBuf;
-
-#[derive(Debug, Deserialize, Serialize)]
-struct Post {
-    pub title: String,
-    pub id: String,
-    pub date: String,
-    pub author: String,
-    pub peek: String,
-    pub md_name: String,
-}
 
 /// Step 1: Get all post paths.
 fn get_and_parse_paths() -> Result<Vec<Post>, Error> {
