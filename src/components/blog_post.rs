@@ -2,7 +2,7 @@ use markdown::Options;
 use web_sys::console;
 use yew::prelude::*;
 
-use super::blog_list::Post;
+use crate::services::types::Post;
 use crate::services::hooks::use_file;
 
 #[derive(Properties, PartialEq)]

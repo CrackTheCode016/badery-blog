@@ -1,6 +1,7 @@
 /// The actual page which displays the blog content
 use yew::prelude::*;
-use crate::components::blog_list::{Post, BlogList};
+use crate::components::blog_list::BlogList;
+use crate::services::types::Post;
 use crate::services::hooks::use_file;
 
 #[derive(Properties, PartialEq)]
