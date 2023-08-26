@@ -1,4 +1,4 @@
-# [`badery.co`](https://badery.co/blog) Blog
+# [`badery.co`](https://badery.co/) Blog
 
 A Wasm-based, low effort blog that loads MD/MDx files. Made with [Trunk] and [Yew].
 
