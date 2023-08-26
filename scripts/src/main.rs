@@ -2,7 +2,6 @@ use std::fs::File;
 use std::io::Error;
 use std::io::{Read, Write};
 
-use serde::{Deserialize, Serialize};
 use serde_json::Result as SerdeResult;
 use wasm_blog::services::types::Post;
 use std::path::PathBuf;

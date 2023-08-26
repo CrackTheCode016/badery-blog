@@ -1,5 +1,3 @@
-use serde::{Deserialize, Serialize};
-use serde_json::Result;
 use yew::prelude::*;
 use yew::virtual_dom::VNode;
 use yew_router::prelude::{use_navigator, Navigator};
