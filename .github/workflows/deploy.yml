@@ -1,0 +1,22 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install Trunk
+      run: cargo install --locked trunk
+    - uses: actions/checkout@v3
+    - name: Build with trunk
+      run: trunk build --release
