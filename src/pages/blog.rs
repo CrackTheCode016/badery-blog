@@ -11,7 +11,7 @@ pub struct BlogProps {
 
 #[function_component(Blog)]
 pub fn blog_full() -> Html {
-    let md = use_file("badery-wasm-blog/posts/metadata.json".to_string()).unwrap();
+    let md = use_file("/badery-wasm-blog/posts/metadata.json".to_string()).unwrap();
 
     html! {
     <div class="body">
