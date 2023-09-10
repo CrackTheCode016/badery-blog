@@ -19,7 +19,7 @@ fn use_test() {
 #[function_component(BlogPost)]
 pub fn post(props: &BlogPostProps) -> HtmlResult {
     let path = format!("/badery-wasm-blog/posts/{}.md", props.id.clone());
-    let metadata = use_file("/badery-wasm-blogposts/metadata.json".to_string())?;
+    let metadata = use_file("/badery-wasm-blog/posts/metadata.json".to_string())?;
     let md: String = use_file(path.clone())?;
     if metadata != "not found" {
         let post =
