@@ -1,8 +1,8 @@
+use crate::components::blog_list::BlogList;
+use crate::services::hooks::use_file;
+use crate::services::types::Post;
 /// The actual page which displays the blog content
 use yew::prelude::*;
-use crate::components::blog_list::BlogList;
-use crate::services::types::Post;
-use crate::services::hooks::use_file;
 
 #[derive(Properties, PartialEq)]
 pub struct BlogProps {
@@ -11,8 +11,7 @@ pub struct BlogProps {
 
 #[function_component(Blog)]
 pub fn blog_full() -> Html {
-
-    let md = use_file("/posts/metadata.json".to_string()).unwrap();
+    let md = use_file("badery-wasm-blog/posts/metadata.json".to_string()).unwrap();
 
     html! {
     <div class="body">
