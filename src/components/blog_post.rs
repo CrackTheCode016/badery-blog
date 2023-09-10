@@ -1,9 +1,8 @@
 use markdown::Options;
-use web_sys::console;
 use yew::prelude::*;
 
-use crate::services::types::Post;
 use crate::services::hooks::use_file;
+use crate::services::types::Post;
 
 #[derive(Properties, PartialEq)]
 pub struct BlogPostProps {
@@ -23,7 +22,8 @@ pub fn post(props: &BlogPostProps) -> HtmlResult {
     let metadata = use_file("/posts/metadata.json".to_string())?;
     let md: String = use_file(path.clone())?;
     if metadata != "not found" {
-        let post = Post::get_post_from_metadata(metadata, props.id.clone()).expect("could not parse post");
+        let post =
+            Post::get_post_from_metadata(metadata, props.id.clone()).expect("could not parse post");
         let html = html::Html::from_html_unchecked(
             markdown::to_html_with_options(&md, &Options::gfm())
                 .expect("Unable to parse markdown")

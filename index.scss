@@ -140,6 +140,9 @@ code {
   p {
     font-size: 2vmin;
   }
+  li {
+    font-size: 2vmin;
+  }
 }
 
 .post hr {
@@ -151,6 +154,10 @@ code {
   box-shadow: 2px 10px 10px 5px rgba(0,0,0,0.1);
   margin-left: 17.5%;
   margin-right: 17.5%;
+}
+
+.post a {
+  color: beige;
 }
 
 .post p img {
