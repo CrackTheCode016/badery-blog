@@ -37,7 +37,8 @@ jobs:
       uses: actions/upload-pages-artifact@v2
       with:
         path: './dist'
-      run: cp index.html 404.html
+    - name: 404 fallback
+      run:  cp index.html 404.html
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2
