@@ -9,7 +9,6 @@ use yew_router::prelude::*;
 
 #[function_component(App)]
 pub fn app() -> Html {
-    // let dir = std::fs::read_dir("/").unwrap();
     html! {
         <html class="scroll-smooth dark:bg-slate-800">
             <BrowserRouter>

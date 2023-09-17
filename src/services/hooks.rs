@@ -1,6 +1,6 @@
 use wasm_bindgen_futures::spawn_local;
 use yew::prelude::*;
-use yew::suspense::SuspensionResult;
+use yew::suspense::{SuspensionResult, Suspension};
 use crate::services::handler::FileHandler;
 
 #[hook]
@@ -14,6 +14,9 @@ pub fn use_file(path: String) -> SuspensionResult<String> {
         });
         state.as_ref().cloned()
     };
-    
-    Ok(md.unwrap())
+    let (s, _) = Suspension::new();
+    match md {
+        Some(md) => Ok(md),
+        None => Err(s)
+    }
 }
