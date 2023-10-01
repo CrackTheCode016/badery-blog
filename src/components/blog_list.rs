@@ -20,7 +20,7 @@ fn post_to_list_item(post: &Post, navigator: Navigator) -> Html {
     html! {
      <div class="list-item" {onclick}>
         <div class="list-header">
-            <p class="date">{"Tue Aug 22"}</p>
+            <p class="date">{post.date.clone()}</p>
             <h1>{post.title.clone()}</h1>
             <div class="info">
         </div>
