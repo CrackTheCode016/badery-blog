@@ -20,15 +20,12 @@ fn post_to_list_item(post: &Post, navigator: Navigator) -> Html {
     html! {
      <div class="list-item" {onclick}>
         <div class="list-header">
-            <p class="date">{post.date.clone()}</p>
-            <h1>{post.title.clone()}</h1>
-            <div class="info">
-        </div>
+        <p class="date">{post.date.clone()}</p>
+        <p class="list-title">{post.title.clone()}</p>
     </div>
-
+        <hr/ >
     <div class="list-body">
         <p>{post.peek.clone()}</p>
-        <div class="bar"></div>
         </div>
     </div>
     }

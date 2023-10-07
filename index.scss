@@ -115,14 +115,10 @@ code {
     align-self: center;
 }
 
-.list-item {
-    border-radius: 8px;
-    padding: 10px;
-}
-
 .list-item:hover {
     animation: fadeIn 0.25s;
     background-color: rgba(33, 33, 41, 1);
+    text-decoration: none;
 }
 
 @keyframes fadeIn {
@@ -196,8 +192,16 @@ code {
 .post .info,
 .date,
 .author {
-    font-style: italic;
+    font-size: small;
     color: rgba(245, 245, 220, 0.5);
+}
+
+.post .info,
+.list-title,
+.author {
+    font-size: large;
+    text-decoration: underline;
+    margin: 0;
 }
 
 .info {
