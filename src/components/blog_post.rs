@@ -1,8 +1,11 @@
 use markdown::Options;
 use yew::prelude::*;
+use yew_router::navigator;
+use yew_router::prelude::use_navigator;
 
+use crate::pages::routes::Route;
 use crate::services::hooks::use_file;
-use crate::services::types::Post;
+use crate::services::types::{Post, PostRetrievalError};
 
 #[derive(Properties, PartialEq)]
 pub struct BlogPostProps {
@@ -20,10 +23,16 @@ fn use_test() {
 pub fn post(props: &BlogPostProps) -> HtmlResult {
     let path = format!("/posts/{}.md", props.id.clone());
     let metadata = use_file("/posts/metadata.json".to_string())?;
+    let navigator = use_navigator().expect("navigator not available");
+
     let md: String = use_file(path.clone())?;
     if metadata != "not found" {
-        let post =
-            Post::get_post_from_metadata(metadata, props.id.clone()).expect("could not parse post");
+        
+        let post = Post::get_post_from_metadata(metadata, props.id.clone());
+        if post.is_err() {
+            navigator.push(&Route::NotFound);
+        }
+        let post = post.expect("");
         let html = html::Html::from_html_unchecked(
             markdown::to_html_with_options(&md, &Options::gfm())
                 .expect("Unable to parse markdown")
@@ -33,7 +42,7 @@ pub fn post(props: &BlogPostProps) -> HtmlResult {
                 .into(),
         );
 
-        return Ok(html! {
+         return Ok(html! {
                         <div class="post">
                                 <div class="info">
                                     <p class="date">{post.date}</p>
@@ -45,6 +54,8 @@ pub fn post(props: &BlogPostProps) -> HtmlResult {
                                     {html}
                         </div>
         });
+
+
     }
 
     return Ok(html! {});
