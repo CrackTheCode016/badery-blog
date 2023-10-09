@@ -6,6 +6,13 @@ author: bader
 desc: a short about me and 'current status'
 ---
 
+
+```rust
+fn main() {
+    println!("Hi");
+}
+```
+
 ## hello.
 
 Most of this blog will probably be an informal, rant-like format.  Over the years, I've been privileged enough to have written on [Hackernoon](https://hackernoon.com/u/anormaljourney), which has gotten me pretty far.  I mostly cover the following:

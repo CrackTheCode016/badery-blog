@@ -12,12 +12,6 @@ pub struct BlogPostProps {
     pub id: String,
 }
 
-#[hook]
-fn use_test() {
-    let state = use_state(|| Some("hi"));
-    state.set(Some("hello"));
-}
-
 /// The full blog post, loads the markdown content.
 #[function_component(BlogPost)]
 pub fn post(props: &BlogPostProps) -> HtmlResult {
@@ -27,36 +21,35 @@ pub fn post(props: &BlogPostProps) -> HtmlResult {
 
     let md: String = use_file(path.clone())?;
     if metadata != "not found" {
-        
         let post = Post::get_post_from_metadata(metadata, props.id.clone());
+        // grug brain error checking - simple good!
         if post.is_err() {
             navigator.push(&Route::NotFound);
-        }
-        let post = post.expect("");
-        let html = html::Html::from_html_unchecked(
-            markdown::to_html_with_options(&md, &Options::gfm())
+        } else {
+            
+            let post = post.expect("NEVER SHOULD BE BAD");
+            let raw_html_markdown = markdown::to_html_with_options(&md, &Options::gfm())
                 .expect("Unable to parse markdown")
                 .lines()
                 .skip(6)
-                .collect::<String>()
-                .into(),
-        );
+                .collect::<String>();
 
-         return Ok(html! {
-                        <div class="post">
-                                <div class="info">
-                                    <p class="date">{post.date}</p>
-                                    <p class="author">{post.author}</p>
-                                </div>
-                                    <hr />
-                                    <h1>{post.title}</h1>
-                                    <hr />
-                                    {html}
+            // todo: should probably be in its own render function, ideally to do things like syntax highlighting or something
+            let html = html::Html::from_html_unchecked(raw_html_markdown.into());
+
+            return Ok(html! {
+                    <div class="post">
+                        <div class="info">
+                            <p class="date">{post.date}</p>
+                            <p class="author">{post.author}</p>
                         </div>
-        });
-
-
+                            <hr />
+                            <h1>{post.title}</h1>
+                            <hr />
+                         {html}
+                    </div>
+            });
+        }
     }
-
     return Ok(html! {});
 }
