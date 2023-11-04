@@ -38,6 +38,7 @@ pub fn navbar() -> Html {
             <a target="_blank" href="https://github.com/CrackTheCode016"> <button>{"github"}</button></a>
             <a target="_blank" href="https://twitter.com/baderyo_o"> <button>{"twitter"}</button></a>
             <a target="_blank" href="https://www.linkedin.com/in/bader-youssef-975914159/"> <button>{"linkedin"}</button></a>
+            <a target="_blank" href="https://www.twitch.tv/baderyo_o"> <button>{"twitch"}</button></a>
           </div>
         </div>
       </nav>
